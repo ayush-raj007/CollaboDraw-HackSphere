@@ -25,7 +25,9 @@ export function useBoardSocket({ boardId, pageId, onRemoteElements, onChat }: Us
   useEffect(() => {
     if (!boardId) return;
     const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
+    const base = import.meta.env.BASE_URL.endsWith("/")
+      ? import.meta.env.BASE_URL
+      : `${import.meta.env.BASE_URL}/`;
     const url = `${proto}//${window.location.host}${base}api/ws?boardId=${encodeURIComponent(boardId)}`;
     const ws = new WebSocket(url);
     wsRef.current = ws;

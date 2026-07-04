@@ -1,0 +1,2 @@
+- [WebSocket URL construction with BASE_URL](websocket-base-url.md) — stripping trailing slashes from `import.meta.env.BASE_URL` before appending a path can merge host+path with no separator, silently breaking WS connections.
+- [Express JSON body limit for canvas/image data](express-json-body-limit.md) — default 100kb express.json() limit causes silent-looking 413s on saves once payloads include base64 images/board data.
