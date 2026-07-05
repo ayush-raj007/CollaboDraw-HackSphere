@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "DiuqXnAHEfvuUiqIMZA2J"
+uri = "file://artifacts/collabodraw-video/public/images/team.png"
+type = "image"
+title = "Creative team brainstorming"

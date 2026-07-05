@@ -1,0 +1,31 @@
+kind = "video"
+previewPath = "/collabodraw-video/"
+title = "CollaboDraw Promo Video"
+version = "1.0.0"
+id = "artifacts/collabodraw-video"
+router = "path"
+
+[[integratedSkills]]
+name = "video-js"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/collabodraw-video/" ]
+localPort = 24491
+
+[services.development]
+run = "pnpm --filter @workspace/collabodraw-video run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/collabodraw-video", "run", "build" ]
+publicDir = "artifacts/collabodraw-video/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24491"
+BASE_PATH = "/collabodraw-video/"
