@@ -1,6 +1,7 @@
 # 🎨 CollaboDRAW
 
 > A real-time collaborative whiteboard application for seamless multi-user drawing.
+  [![CollaboDRAW Demo](https://img.youtube.com/vi/t0_OSyVOm5k/maxresdefault.jpg)](https://youtu.be/t0_OSyVOm5k)
 
 ## 📝 About The Project
 
