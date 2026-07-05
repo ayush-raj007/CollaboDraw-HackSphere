@@ -62,7 +62,7 @@ export default function BoardPage({ boardId }: { boardId: string }) {
   const { user } = useAuth();
   const [, navigate] = useLocation();
   const queryClient = useQueryClient();
-  const { data: board, isLoading } = useGetBoard(boardId);
+  const { data: board, isLoading, isError, error } = useGetBoard(boardId);
   const updateBoard = useUpdateBoard();
 
   const [data, setData] = useState<WhiteboardData>(createEmptyBoard());
@@ -291,6 +291,25 @@ export default function BoardPage({ boardId }: { boardId: string }) {
       return next;
     });
   };
+
+  if (isError) {
+    const status = (error as { response?: { status?: number } } | undefined)?.response?.status;
+    return (
+      <div className="flex min-h-screen w-full flex-col items-center justify-center gap-3 bg-background px-4 text-center">
+        <h1 className="text-xl font-semibold">
+          {status === 401 ? "You need to log in to open this board" : "You don't have access to this board"}
+        </h1>
+        <p className="max-w-sm text-sm text-muted-foreground">
+          {status === 401
+            ? "Log in to continue, then try the link again."
+            : "Ask the board owner to add you as a collaborator. You'll need to log in at least once so they can find you by name or email in the Share dialog."}
+        </p>
+        <Button onClick={() => navigate("/")} data-testid="button-back-home">
+          Go to dashboard
+        </Button>
+      </div>
+    );
+  }
 
   if (isLoading || !board || !activePage) {
     return (
